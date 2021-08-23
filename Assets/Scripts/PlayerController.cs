@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -6,6 +7,7 @@ public class PlayerController : MonoBehaviour
 	// in the inspector.
 	public Rigidbody rb;
 	public float speed = 900f;
+	private int score = 0;
 
     // Update is called once per frame
     void FixedUpdate()
@@ -27,4 +29,14 @@ public class PlayerController : MonoBehaviour
 			rb.AddForce(-speed * Time.deltaTime, 0, 0);
 		}
     }
+	// Called when an object with Collider is touched.
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "Pickup")
+		{
+			score += 1;
+			Destroy(other.gameObject);
+			Debug.Log(String.Format("Score: {0}", score));
+		}
+	}
 }
