@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
 	public float speed = 900f;
 	private int score = 0;
 
+	public int health = 5;
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -37,6 +39,11 @@ public class PlayerController : MonoBehaviour
 			score += 1;
 			Destroy(other.gameObject);
 			Debug.Log(String.Format("Score: {0}", score));
+		}
+		if (other.gameObject.tag == "Trap")
+		{
+			health -= 1;
+			Debug.Log(String.Format("Health: {0}", health));
 		}
 	}
 }
