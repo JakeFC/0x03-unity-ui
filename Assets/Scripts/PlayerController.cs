@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +13,15 @@ public class PlayerController : MonoBehaviour
 	public int health = 5;
 
     // Update is called once per frame
+	void Update()
+	{
+		if (health == 0)
+		{
+			Debug.Log("Game Over!");
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		}
+	}
+	// FixedUpdate is used each frame for physics
     void FixedUpdate()
     {
         if (Input.GetKey("w"))
