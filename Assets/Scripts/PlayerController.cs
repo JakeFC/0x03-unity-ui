@@ -2,13 +2,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+	// Our object's Rigidbody component is assigned to rb
+	// in the inspector.
 	public Rigidbody rb;
 	public float speed = 900f;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void FixedUpdate()
