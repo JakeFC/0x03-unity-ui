@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (health == 0)
 		{
-			Debug.Log("Game Over!");
+			ShowLoseScreen();
 			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 	}
@@ -82,5 +82,13 @@ public class PlayerController : MonoBehaviour
 		winLoseText.GetComponent<Text>().text = "You Win!";
 		winLoseText.GetComponent<Text>().color = Color.black;
 		winLoseBG.GetComponent<Image>().color = Color.green;
+	}
+
+	void ShowLoseScreen()
+	{
+		winLoseBG.gameObject.SetActive(true);
+		winLoseText.GetComponent<Text>().text = "Game Over!";
+		winLoseText.GetComponent<Text>().color = Color.white;
+		winLoseBG.GetComponent<Image>().color = Color.red;
 	}
 }
