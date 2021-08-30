@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 		if (health == 0)
 		{
 			ShowLoseScreen();
-			StartCoroutine(LoadScene(3));
+			StartCoroutine(LoadScene(3f));
 		}
 		if (Input.GetKey(KeyCode.Escape))
 		{
@@ -68,25 +68,31 @@ public class PlayerController : MonoBehaviour
 		if (other.gameObject.tag == "Goal")
 		{
 			ShowWinScreen();
+			StartCoroutine(LoadScene(3f));
 		}
 	}
 
+	// Waits given seconds before reloading the scene.
 	IEnumerator LoadScene(float seconds)
 	{
 		yield return new WaitForSeconds(seconds);
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
+	// Changes the text in scoreText UI element.
 	void SetScoreText()
 	{
 		scoreText.GetComponent<Text>().text = String.Format("Score: {0}", score);
 	}
 
+	// Changes the text in healthText UI element.
 	void SetHealthText()
 	{
 		healthText.GetComponent<Text>().text = String.Format("Health: {0}", health);
 	}
 
+	// Changes the text and background/text color of winLoseBG and winLoseText
+	// to win settings and sets the parent active.
 	void ShowWinScreen()
 	{
 		winLoseBG.gameObject.SetActive(true);
@@ -95,6 +101,8 @@ public class PlayerController : MonoBehaviour
 		winLoseBG.GetComponent<Image>().color = Color.green;
 	}
 
+	// Changes the text and background/text color of winLoseBG and winLoseText
+	// to lose settings and sets the parent active.
 	void ShowLoseScreen()
 	{
 		winLoseBG.gameObject.SetActive(true);
