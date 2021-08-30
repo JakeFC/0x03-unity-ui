@@ -25,6 +25,10 @@ public class PlayerController : MonoBehaviour
 			ShowLoseScreen();
 			StartCoroutine(LoadScene(3));
 		}
+		if (Input.GetKey(KeyCode.Escape))
+		{
+			SceneManager.LoadScene("menu");
+		}
 	}
 	// FixedUpdate is used each frame for physics
     void FixedUpdate()
