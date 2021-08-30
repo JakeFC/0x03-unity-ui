@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
 	public Rigidbody rb;
 	public float speed = 900f;
 	private int score = 0;
+	public Text scoreText;
 
 	public int health = 5;
 
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
 			rb.AddForce(-speed * Time.deltaTime, 0, 0);
 		}
     }
+
 	// Called when an object with Collider is touched.
 	void OnTriggerEnter(Collider other)
 	{
@@ -48,7 +51,7 @@ public class PlayerController : MonoBehaviour
 		{
 			score += 1;
 			Destroy(other.gameObject);
-			Debug.Log(String.Format("Score: {0}", score));
+			SetScoreText();
 		}
 		if (other.gameObject.tag == "Trap")
 		{
@@ -59,5 +62,10 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.Log("You win!");
 		}
+	}
+
+	void SetScoreText()
+	{
+		scoreText.GetComponent<Text>().text = String.Format("Score: {0}", score);
 	}
 }
