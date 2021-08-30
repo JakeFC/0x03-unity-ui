@@ -12,7 +12,8 @@ public class PlayerController : MonoBehaviour
 	private int score = 0;
 	public Text scoreText;
 	public Text healthText;
-
+	public Image winLoseBG;
+	public Text winLoseText;
 	public int health = 5;
 
     // Update is called once per frame
@@ -61,7 +62,7 @@ public class PlayerController : MonoBehaviour
 		}
 		if (other.gameObject.tag == "Goal")
 		{
-			Debug.Log("You win!");
+			ShowWinScreen();
 		}
 	}
 
@@ -73,5 +74,13 @@ public class PlayerController : MonoBehaviour
 	void SetHealthText()
 	{
 		healthText.GetComponent<Text>().text = String.Format("Health: {0}", health);
+	}
+
+	void ShowWinScreen()
+	{
+		winLoseBG.gameObject.SetActive(true);
+		winLoseText.GetComponent<Text>().text = "You Win!";
+		winLoseText.GetComponent<Text>().color = Color.black;
+		winLoseBG.GetComponent<Image>().color = Color.green;
 	}
 }
