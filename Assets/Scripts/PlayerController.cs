@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,7 +23,7 @@ public class PlayerController : MonoBehaviour
 		if (health == 0)
 		{
 			ShowLoseScreen();
-			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+			StartCoroutine(LoadScene(3));
 		}
 	}
 	// FixedUpdate is used each frame for physics
@@ -64,6 +65,12 @@ public class PlayerController : MonoBehaviour
 		{
 			ShowWinScreen();
 		}
+	}
+
+	IEnumerator LoadScene(float seconds)
+	{
+		yield return new WaitForSeconds(seconds);
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 	}
 
 	void SetScoreText()
