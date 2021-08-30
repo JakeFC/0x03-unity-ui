@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
 	public float speed = 900f;
 	private int score = 0;
 	public Text scoreText;
+	public Text healthText;
 
 	public int health = 5;
 
@@ -56,7 +57,7 @@ public class PlayerController : MonoBehaviour
 		if (other.gameObject.tag == "Trap")
 		{
 			health -= 1;
-			Debug.Log(String.Format("Health: {0}", health));
+			SetHealthText();
 		}
 		if (other.gameObject.tag == "Goal")
 		{
@@ -67,5 +68,10 @@ public class PlayerController : MonoBehaviour
 	void SetScoreText()
 	{
 		scoreText.GetComponent<Text>().text = String.Format("Score: {0}", score);
+	}
+
+	void SetHealthText()
+	{
+		healthText.GetComponent<Text>().text = String.Format("Health: {0}", health);
 	}
 }
